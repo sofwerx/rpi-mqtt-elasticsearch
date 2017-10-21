@@ -3,10 +3,14 @@ services: docker
 language: bash
 branches:
   only:
-    - master
+  - master
 before_script:
-  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+- docker run --rm --privileged multiarch/qemu-user-static:register --reset
 script:
-  - ./build.sh
+- "./build.sh"
 after_success:
-  - ./push.sh
+- "./push.sh"
+notifications:
+  slack:
+    rooms:
+      secure: jacQ/U/wXJL6CGExh9qCBZzVWkPaHfcjcL5EOI3n6xIN6/X6l3p9jthB+0zBnGaOgAMQBAJhXH0WPYx0fSgys5duyxOrOEz+dAAV8gQ5pq1oLsk2ugDAUOMHg9XJsWglpNk5ya67MgWblpADNqZ39Jy42emmoPKDGHeENjXI0MLh2s3td1G11L8laVG0fhx2PgKxbE7uYa9uwKFdJ0vYpaBEc60YQT1iW4WMSiwiyd0egPCryTR6aLOgwrgX6C5tabhipsy4W0uLgJbuF+ZHCDVvgd3lfSLUhNBtBNi6eXts7NDIvwzxksFN9eYQtKDfgtRx341Duh8dddUz3IMwr/lzaxKv7ozC8jaEeZJLCXEGUpkSNl8AhoBro0ECRzYetryT592bItCh5b1MOOwRdZPdcjluIyKBKAq0LjM1LSFz9maUr8OpN2Fgc8WXIvybfyWaixOZNoQCOKhYLVMytzLPbPir9AiZumrpm4e6DsotpPJ4ZQYsiXsIdR66lci2psBjDTTJwevlL5u0pALMyAaYkwR3XpT+YNqbXDOs8EjjQMCKBZaYGQAi6dpDcewH4Fp1rWMNISd+nB6Thj6iDJzZxirjpBQceo0FX8pvI1Ra9ZbAxilEQXExp0BfYJvHejFbb7nzk9TQvtFJtzzEYVBPR6leQtXxfk5rwHaeV98=
