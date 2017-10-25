@@ -21,7 +21,7 @@ def on_connect(client, userdata, flags, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
-    es.index(index="rtl433", doc_type="string", body={"topic" : msg.topic, "dataString" : msg.payload, "timestamp": datetime.utcnow()})
+    es.index(index="rtl433-" + datetime.datetime.now().strftime("%y.%m.%d"), doc_type="string", body={"topic" : msg.topic, "dataString" : msg.payload, "timestamp": datetime.utcnow()})
     
 # by default we connect to elasticSearch on localhost:9200
 es = Elasticsearch()
